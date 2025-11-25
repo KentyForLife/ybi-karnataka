@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { listResearch, deleteResearch } from '../firebase'
 
-const ADMIN_PASSWORD = 'ybi123'
+const ADMIN_PASSWORD = 'tarunsigma123'
 
 export default function Admin(){
   const [password, setPassword] = useState('')
