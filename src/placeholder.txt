@@ -1,0 +1,1 @@
+Note: Replace Firebase config in src/firebase.js before running the app. Configure Firestore and Storage rules appropriately.
