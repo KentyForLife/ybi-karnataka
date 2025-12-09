@@ -7,7 +7,7 @@ const Link = ({ to, children }) => (
   <NavLink
     to={to}
     className={({ isActive }) =>
-      `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'bg-green-600 text-white' : 'text-gray-700 hover:bg-gray-100'}`
+      `px-3 py-2 rounded-md text-sm font-medium ${isActive ? 'bg-brand-600 text-white' : 'text-gray-700 hover:bg-gray-100'}`
     }
   >
     {children}
@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <header className="bg-white shadow">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
-        <div className="text-green-600 font-bold text-xl">YBI Karnataka</div>
+        <div className="text-brand-600 font-bold text-xl">YBI Karnataka</div>
         <div className="hidden md:flex items-center gap-1">
           <Link to="/">Home</Link>
           {/* Show Upload Research link only when admin context is 1 */}
@@ -29,7 +29,7 @@ export default function Navbar() {
           <Link to="/about">About</Link>
         </div>
         <div className="md:hidden">
-          <NavLink to="/browse" className="text-sm text-green-600">Browse</NavLink>
+          <NavLink to="/browse" className="text-sm text-brand-600">Browse</NavLink>
         </div>
       </div>
     </header>

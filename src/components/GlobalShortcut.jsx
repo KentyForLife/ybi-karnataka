@@ -8,6 +8,10 @@ export default function GlobalShortcut() {
       const isInput = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable
       if (isInput) return
 
+      // Don't trigger if already on an admin page
+      const currentPath = window.location.pathname
+      if (currentPath === '/admin' || currentPath === '/secret-admin' || currentPath === '/upload') return
+
       const mac = e.metaKey && !e.ctrlKey
       const ctrl = e.ctrlKey
       if ((ctrl || mac) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {

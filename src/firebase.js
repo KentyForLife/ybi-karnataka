@@ -1,8 +1,13 @@
-// IMPORTANT: Create .env.local with your Firebase config (copy from .env.example)
+/**
+ * Firebase Configuration & Database Functions
+ * This file initializes Firebase and provides CRUD operations for research papers
+ * Environment variables are loaded from .env.local (create from .env.example)
+ */
+
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 
+// Load Firebase config from environment variables
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -12,14 +17,16 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
+// Check if Firebase is properly configured
 const isConfigured = !!(firebaseConfig && (firebaseConfig.apiKey || firebaseConfig.projectId || firebaseConfig.appId))
 
 const errMsg = 'Firebase is not configured. Please open src/firebase.js and paste your Firebase config object.'
 
+// Declare export functions - will be assigned based on configuration status
 let addResearch, listResearch, getResearch, deleteResearch
 
+// If Firebase is not configured, throw an error when functions are called
 if (!isConfigured) {
-  // Provide clear runtime errors when functions are used without configuration.
   const throwConfig = () => { throw new Error(errMsg) }
 
   addResearch = async () => { throwConfig() }
@@ -28,56 +35,53 @@ if (!isConfigured) {
   deleteResearch = async () => { throwConfig() }
 
 } else {
+  // Firebase is configured - initialize app
   const app = initializeApp(firebaseConfig)
   const db = getFirestore(app)
-  const storage = getStorage(app)
 
+  // Reference to the 'research' collection in Firestore
   const researchCollection = collection(db, 'research')
 
-  async function uploadFile(file, path) {
-    const sRef = storageRef(storage, path)
-    await uploadBytes(sRef, file)
-    const url = await getDownloadURL(sRef)
-    return { url, path }
-  }
-
-  addResearch = async function ({ title, author, description, file, filename }) {
-    const timestamp = Date.now()
-    const path = `research/${timestamp}_${filename}`
-    const { url } = await uploadFile(file, path)
-
+  /**
+   * Add a new research paper to the database
+   * Stores: title, author, description, content (full research paper text), and creation timestamp
+   * Returns: document ID of the newly created research entry
+   */
+  addResearch = async function ({ title, author, description, content }) {
     const docRef = await addDoc(researchCollection, {
       title,
       author,
       description,
-      fileURL: url,
-      storagePath: path,
-      createdAt: serverTimestamp(),
+      content, // Full text content of the research paper
+      createdAt: serverTimestamp(), // Firebase server timestamp
     })
-
     return docRef.id
   }
 
+  /**
+   * Retrieve all research papers from the database
+   * Returns: array of research objects with id and all fields
+   */
   listResearch = async function () {
     const snapshot = await getDocs(researchCollection)
     return snapshot.docs.map(d => ({ id: d.id, ...d.data() }))
   }
 
+  /**
+   * Retrieve a single research paper by ID
+   * Returns: research object with all fields, or null if not found
+   */
   getResearch = async function (id) {
     const d = await getDoc(doc(db, 'research', id))
     if (!d.exists()) return null
     return { id: d.id, ...d.data() }
   }
 
-  deleteResearch = async function (id, storagePath) {
-    // delete storage object then firestore doc
-    if (storagePath) {
-      try {
-        await deleteObject(storageRef(storage, storagePath))
-      } catch (e) {
-        console.warn('Failed to delete storage object', e)
-      }
-    }
+  /**
+   * Delete a research paper from the database by ID
+   * Only callable from admin pages with authentication
+   */
+  deleteResearch = async function (id) {
     await deleteDoc(doc(db, 'research', id))
   }
 
