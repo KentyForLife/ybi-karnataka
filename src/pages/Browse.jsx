@@ -29,7 +29,7 @@ export default function Browse(){
     <div className="animate-fadeInUp">
       <div className="mb-8">
         <h2 className="text-4xl font-bold bg-gradient-to-r from-brand-600 to-brand-700 bg-clip-text text-transparent mb-2">Browse Research</h2>
-        <p className="text-gray-500">Explore research papers from the YBI Karnataka community</p>
+        <p className="text-gray-500">Explore research papers from the YBI community</p>
       </div>
       {loading ? (
         <div className="text-center py-16">

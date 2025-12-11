@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <header className="bg-white shadow">
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
-        <div className="text-brand-600 font-bold text-xl">YBI Karnataka</div>
+        <div className="text-brand-600 font-bold text-3xl">YBI</div>
         <div className="hidden md:flex items-center gap-1">
           <Link to="/">Home</Link>
           {/* Show Upload Research link only when admin context is 1 */}
