@@ -1,0 +1,68 @@
+[debug] [2025-12-30T09:00:18.128Z] ----------------------------------------------------------------------
+[debug] [2025-12-30T09:00:18.131Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/c776mhyhgykcld7p90ajrka149ifn61a-firebase-tools-14.26.0/lib/node_modules/firebase-tools/lib/bin/firebase.js deploy --only hosting
+[debug] [2025-12-30T09:00:18.132Z] CLI Version:   14.26.0
+[debug] [2025-12-30T09:00:18.132Z] Platform:      linux
+[debug] [2025-12-30T09:00:18.132Z] Node Version:  v20.19.1
+[debug] [2025-12-30T09:00:18.132Z] Time:          Tue Dec 30 2025 09:00:18 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-12-30T09:00:18.132Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-30T09:00:18.695Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:18.695Z] No OAuth tokens found
+[error] Failed to fetch Firebase Project from current Studio Workspace: Unable to refresh auth: not yet authenticated.
+[debug] [2025-12-30T09:00:18.701Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-30T09:00:18.702Z] > authorizing via signed-in user (cotarun.chethan@gmail.com)
+[debug] [2025-12-30T09:00:18.702Z] [iam] checking project youthbiologyinstitute for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-12-30T09:00:18.703Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:18.703Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:18.703Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-30T09:00:18.703Z] > authorizing via signed-in user (cotarun.chethan@gmail.com)
+[debug] [2025-12-30T09:00:18.705Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/youthbiologyinstitute:testIamPermissions [none]
+[debug] [2025-12-30T09:00:18.705Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/youthbiologyinstitute:testIamPermissions x-goog-quota-user=projects/youthbiologyinstitute
+[debug] [2025-12-30T09:00:18.705Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/youthbiologyinstitute:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-30T09:00:19.552Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/youthbiologyinstitute:testIamPermissions 200
+[debug] [2025-12-30T09:00:19.552Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/youthbiologyinstitute:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-12-30T09:00:19.554Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:19.554Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:19.554Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-30T09:00:19.554Z] > authorizing via signed-in user (cotarun.chethan@gmail.com)
+[debug] [2025-12-30T09:00:19.555Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/youthbiologyinstitute [none]
+[debug] [2025-12-30T09:00:19.842Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/youthbiologyinstitute 200
+[debug] [2025-12-30T09:00:19.843Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/youthbiologyinstitute {"projectId":"youthbiologyinstitute","projectNumber":"357089527614","displayName":"youthbiologyinstitute","name":"projects/youthbiologyinstitute","resources":{"hostingSite":"youthbiologyinstitute"},"state":"ACTIVE","etag":"1_9f4fc57c-2688-47d1-9b92-4e0975dcc7dd"}
+[debug] [2025-12-30T09:00:22.285Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:22.285Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:22.285Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-30T09:00:22.286Z] > authorizing via signed-in user (cotarun.chethan@gmail.com)
+[debug] [2025-12-30T09:00:22.286Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/youthbiologyinstitute/sites pageToken=&pageSize=10
+[debug] [2025-12-30T09:00:23.474Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/youthbiologyinstitute/sites 200
+[debug] [2025-12-30T09:00:23.475Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/youthbiologyinstitute/sites {"sites":[{"name":"projects/youthbiologyinstitute/sites/youthbiologyinstitute","defaultUrl":"https://youthbiologyinstitute.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-30T09:00:23.476Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:23.476Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:23.476Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-30T09:00:23.477Z] > authorizing via signed-in user (cotarun.chethan@gmail.com)
+[debug] [2025-12-30T09:00:23.477Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/youthbiologyinstitute/sites 
+[debug] [2025-12-30T09:00:23.762Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/youthbiologyinstitute/sites 200
+[debug] [2025-12-30T09:00:23.763Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/youthbiologyinstitute/sites {"sites":[{"name":"projects/youthbiologyinstitute/sites/youthbiologyinstitute","defaultUrl":"https://youthbiologyinstitute.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-12-30T09:00:23.768Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:23.769Z] No OAuth tokens found
+[debug] [2025-12-30T09:00:23.769Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2025-12-30T09:00:23.776Z] > authorizing via signed-in user (cotarun.chethan@gmail.com)
+[debug] [2025-12-30T09:00:23.777Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/youthbiologyinstitute/webApps/-/config [none]
+[debug] [2025-12-30T09:00:24.300Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/youthbiologyinstitute/webApps/-/config 200
+[debug] [2025-12-30T09:00:24.300Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/youthbiologyinstitute/webApps/-/config {"projectId":"youthbiologyinstitute","storageBucket":"youthbiologyinstitute.firebasestorage.app","apiKey":"AIzaSyBuRF48qYQm0ZyPLeMg8n0QwMdT4EzI6Ic","authDomain":"youthbiologyinstitute.firebaseapp.com","messagingSenderId":"357089527614","projectNumber":"357089527614","version":"2"}
+[info] 
+   Thank you for trying our experimental support for React on Firebase Hosting.
+   While this integration is maintained by Googlers it is not a supported Firebase product.
+   Issues filed on GitHub will be addressed on a best-effort basis by maintainers and other community members.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/frameworks-overview
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2025-12-30T09:00:38.412Z] RollupError: Could not resolve "./pages/UploadResearch" from "src/App.jsx"
+    at error (file:///home/user/ybi-karnataka/node_modules/rollup/dist/es/shared/node-entry.js:2287:30)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/user/ybi-karnataka/node_modules/rollup/dist/es/shared/node-entry.js:24860:24)
+    at file:///home/user/ybi-karnataka/node_modules/rollup/dist/es/shared/node-entry.js:24822:26
+[error] 
+[error] Error: An unexpected error has occurred.
