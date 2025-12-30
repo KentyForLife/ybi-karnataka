@@ -1,11 +1,11 @@
 /**
  * Firebase Configuration & Database Functions
- * This file initializes Firebase and provides CRUD operations for research papers
+ * This file initializes Firebase and provides CRUD operations for research papers and workshops
  * Environment variables are loaded from .env.local (create from .env.example)
  */
 
-import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc, getDocs, doc, getDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 
 // Load Firebase config from environment variables
 const firebaseConfig = {
@@ -15,32 +15,54 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
-}
+};
 
 // Check if Firebase is properly configured
-const isConfigured = !!(firebaseConfig && (firebaseConfig.apiKey || firebaseConfig.projectId || firebaseConfig.appId))
+const isConfigured = !!(firebaseConfig && (firebaseConfig.apiKey || firebaseConfig.projectId || firebaseConfig.appId));
 
-const errMsg = 'Firebase is not configured. Please open src/firebase.js and paste your Firebase config object.'
+const errMsg = 'Firebase is not configured. Please open src/firebase.js and paste your Firebase config object.';
 
 // Declare export functions - will be assigned based on configuration status
-let addResearch, listResearch, getResearch, deleteResearch
+let addResearch, listResearch, getResearch, deleteResearch, addWorkshop, listWorkshops, getWorkshop, deleteWorkshop;
 
 // If Firebase is not configured, throw an error when functions are called
 if (!isConfigured) {
-  const throwConfig = () => { throw new Error(errMsg) }
+  const throwConfig = () => {
+    throw new Error(errMsg);
+  };
 
-  addResearch = async () => { throwConfig() }
-  listResearch = async () => { throwConfig() }
-  getResearch = async () => { throwConfig() }
-  deleteResearch = async () => { throwConfig() }
-
+  addResearch = async () => {
+    throwConfig();
+  };
+  listResearch = async () => {
+    throwConfig();
+  };
+  getResearch = async () => {
+    throwConfig();
+  };
+  deleteResearch = async () => {
+    throwConfig();
+  };
+  addWorkshop = async () => {
+    throwConfig();
+  };
+  listWorkshops = async () => {
+    throwConfig();
+  };
+  getWorkshop = async () => {
+    throwConfig();
+  };
+  deleteWorkshop = async () => {
+    throwConfig();
+  };
 } else {
   // Firebase is configured - initialize app
-  const app = initializeApp(firebaseConfig)
-  const db = getFirestore(app)
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
   // Reference to the 'research' collection in Firestore
-  const researchCollection = collection(db, 'research')
+  const researchCollection = collection(db, 'research');
+  const workshopCollection = collection(db, 'workshops');
 
   /**
    * Add a new research paper to the database
@@ -54,38 +76,81 @@ if (!isConfigured) {
       description,
       content, // Full text content of the research paper
       createdAt: serverTimestamp(), // Firebase server timestamp
-    })
-    return docRef.id
-  }
+    });
+    return docRef.id;
+  };
 
   /**
    * Retrieve all research papers from the database
    * Returns: array of research objects with id and all fields
    */
   listResearch = async function () {
-    const snapshot = await getDocs(researchCollection)
-    return snapshot.docs.map(d => ({ id: d.id, ...d.data() }))
-  }
+    const snapshot = await getDocs(researchCollection);
+    return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+  };
 
   /**
    * Retrieve a single research paper by ID
    * Returns: research object with all fields, or null if not found
    */
   getResearch = async function (id) {
-    const d = await getDoc(doc(db, 'research', id))
-    if (!d.exists()) return null
-    return { id: d.id, ...d.data() }
-  }
+    const d = await getDoc(doc(db, 'research', id));
+    if (!d.exists()) return null;
+    return { id: d.id, ...d.data() };
+  };
 
   /**
    * Delete a research paper from the database by ID
    * Only callable from admin pages with authentication
    */
   deleteResearch = async function (id) {
-    await deleteDoc(doc(db, 'research', id))
-  }
+    await deleteDoc(doc(db, 'research', id));
+  };
 
+  /**
+   * Add a new workshop to the database
+   * Stores: title, date, slogan, imageUrl, report, and creation timestamp
+   * Returns: document ID of the newly created workshop entry
+   */
+  addWorkshop = async function ({ title, date, slogan, imageUrl, report }) {
+    const docRef = await addDoc(workshopCollection, {
+      title,
+      date,
+      slogan,
+      imageUrl,
+      report,
+      createdAt: serverTimestamp(), // Firebase server timestamp
+    });
+    return docRef.id;
+  };
+
+  /**
+   * Retrieve all workshops from the database
+   * Returns: array of workshop objects with id and all fields
+   */
+  listWorkshops = async function () {
+    const snapshot = await getDocs(workshopCollection);
+    return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+  };
+
+  /**
+   * Retrieve a single workshop by ID
+   * Returns: workshop object with all fields, or null if not found
+   */
+  getWorkshop = async function (id) {
+    const d = await getDoc(doc(db, 'workshops', id));
+    if (!d.exists()) return null;
+    return { id: d.id, ...d.data() };
+  };
+
+  /**
+   * Delete a workshop from the database by ID
+   * Only callable from admin pages with authentication
+   */
+  deleteWorkshop = async function (id) {
+    await deleteDoc(doc(db, 'workshops', id));
+  };
 }
 
-export { addResearch, listResearch, getResearch, deleteResearch }
-export default { addResearch, listResearch, getResearch, deleteResearch }
+export { addResearch, listResearch, getResearch, deleteResearch, addWorkshop, listWorkshops, getWorkshop, deleteWorkshop };
+export default { addResearch, listResearch, getResearch, deleteResearch, addWorkshop, listWorkshops, getWorkshop, deleteWorkshop };
