@@ -31,6 +31,8 @@ export default function Navbar() {
           <Link to="/browse">Browse Research</Link>
           <Link to="/browse-workshops">Browse Workshops</Link>
           <Link to="/about">About</Link>
+          {admin === 1 && <Link to="/admin">Manage Research</Link>}
+          {admin === 1 && <Link to="/admin-workshops">Manage Workshops</Link>}
         </div>
         <div className="md:hidden">
           <NavLink to="/browse" className="text-sm text-brand-600">

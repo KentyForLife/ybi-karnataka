@@ -14,6 +14,7 @@ import { AdminProvider } from './pages/AdminContext.jsx';
 import UploadWorkshop from './pages/UploadWorkshop';
 import BrowseWorkshops from './pages/BrowseWorkshops';
 import WorkshopDetails from './pages/WorkshopDetails';
+import AdminWorkshops from './pages/AdminWorkshops';
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/upload-workshop" element={<UploadWorkshop />} />
             <Route path="/browse-workshops" element={<BrowseWorkshops />} />
             <Route path="/workshop/:id" element={<WorkshopDetails />} />
+            <Route path="/admin-workshops" element={<AdminWorkshops />} />
           </Routes>
         </main>
       </div>
