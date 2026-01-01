@@ -8,9 +8,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function WorkshopCard({ workshop }) {
+  // Always use local image, fallback if imageUrl doesn't exist or is empty
+  const imageUrl = workshop.imageUrl && workshop.imageUrl.trim() ? workshop.imageUrl : '/workshop-report.jpg';
+  
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-brand hover:scale-105 transition-all duration-300 p-6 flex flex-col border border-gray-100">
-      <img src={workshop.imageUrl} alt={workshop.title} className="w-full h-48 object-cover rounded-t-xl mb-4" />
+      <img src={imageUrl} alt={workshop.title} className="w-full h-48 object-cover rounded-t-xl mb-4" onError={(e) => {e.target.src = '/workshop-report.jpg'}} />
       <h3 className="text-lg font-bold text-brand-700 mb-1 line-clamp-2">{workshop.title}</h3>
       <div className="text-sm text-gray-500 mb-3 font-medium">{workshop.date}</div>
       <p className="mt-2 text-gray-700 text-sm line-clamp-3 flex-1">{workshop.slogan}</p>

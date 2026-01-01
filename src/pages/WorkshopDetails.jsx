@@ -54,6 +54,17 @@ export default function WorkshopDetails() {
         </div>
       </div>
 
+      {/* Workshop Image Section */}
+      {(workshop.imageUrl || true) && (
+        <div className="rounded-lg overflow-hidden border-2 border-brand-200 shadow-lg">
+          <img 
+            src={workshop.imageUrl || '/workshop-report.jpg'} 
+            alt={workshop.title} 
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      )}
+
       {/* Slogan Section */}
       <div className="bg-brand-50 p-6 rounded-lg">
         <h3 className="text-xl font-semibold text-brand-600 mb-3">Slogan</h3>

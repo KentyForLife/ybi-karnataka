@@ -24,14 +24,17 @@ export default function UploadWorkshop() {
    */
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title || !date || !slogan || !imageUrl || !report) {
+    // Allow imageUrl to be optional for "Workshop 1"
+    if (!title || !date || !slogan || !report || (!imageUrl && title !== 'Workshop 1')) {
       setStatus('Please fill all fields.');
       return;
     }
     setIsLoading(true);
     setStatus('Saving...');
     try {
-      const docId = await addWorkshop({ title, date, slogan, imageUrl, report });
+      // Use placeholder URL for Workshop 1 if imageUrl is empty
+      const finalImageUrl = title === 'Workshop 1' && !imageUrl ? '/workshop-report.jpg' : imageUrl;
+      const docId = await addWorkshop({ title, date, slogan, imageUrl: finalImageUrl, report });
       setStatus('Saved successfully!');
       setTitle('');
       setDate('');
