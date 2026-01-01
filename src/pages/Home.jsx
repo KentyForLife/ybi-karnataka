@@ -206,28 +206,3 @@ export default function Home(){
     </div>
   )
 }
-          <p className="text-gray-600">Share your research and insights with our growing community. Get visibility and feedback from peers.</p>
-        </div>
-        <div className="p-8 border-2 border-brand-200 rounded-xl hover:border-brand-600 hover:shadow-brand transition-all animate-fadeInUp" style={{animationDelay: '0.3s'}}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Network</h3>
-          <p className="text-gray-600">Connect with students and researchers who share your passion for biology innovation.</p>
-        </div>
-        <div className="p-8 border-2 border-brand-200 rounded-xl hover:border-brand-600 hover:shadow-brand transition-all animate-fadeInUp" style={{animationDelay: '0.4s'}}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">Learn</h3>
-          <p className="text-gray-600">Explore diverse perspectives and cutting-edge research to advance your own understanding.</p>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="bg-gradient-to-r from-brand-600 to-brand-700 text-white rounded-2xl p-12 md:p-16 mx-6 text-center animate-fadeInUp">
-        <h2 className="text-4xl font-bold mb-4">Ready to Explore?</h2>
-        <p className="text-xl text-brand-100 mb-8 max-w-2xl mx-auto">
-          Join numerous students exploring the frontiers of biomechanics research.
-        </p>
-        <Button as={Link} to="/browse" variant="secondary" size="lg" className="shadow-lg">
-          Start Exploring Now
-        </Button>
-      </div>
-    </div>
-  )
-}
